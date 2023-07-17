@@ -80,14 +80,14 @@ class TusiCouple(Scene):
 
         dots = [dot0,dot1,dot2,dot3,dot4,dot5,dot6,dot7]
         # Show the projection of rotating_dot on every path
-        projection0 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot0.get_center(), color=RED, stroke_opacity=0.5))
-        projection1 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot1.get_center(), color=RED, stroke_opacity=0.5))
-        projection2 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot2.get_center(), color=RED, stroke_opacity=0.5))
-        projection3 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot3.get_center(), color=RED, stroke_opacity=0.5))
-        projection4 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot4.get_center(), color=RED, stroke_opacity=0.5))
-        projection5 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot5.get_center(), color=RED, stroke_opacity=0.5))
-        projection6 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot6.get_center(), color=RED, stroke_opacity=0.5))
-        projection7 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot7.get_center(), color=RED, stroke_opacity=0.5))
+        projection0 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot0.get_center(), color=ORANGE, stroke_opacity=0.5))
+        projection1 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot1.get_center(), color=ORANGE, stroke_opacity=0.5))
+        projection2 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot2.get_center(), color=ORANGE, stroke_opacity=0.5))
+        projection3 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot3.get_center(), color=ORANGE, stroke_opacity=0.5))
+        projection4 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot4.get_center(), color=ORANGE, stroke_opacity=0.5))
+        projection5 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot5.get_center(), color=ORANGE, stroke_opacity=0.5))
+        projection6 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot6.get_center(), color=ORANGE, stroke_opacity=0.5))
+        projection7 = always_redraw(lambda: DashedLine(start=rotating_dot.get_center(), end=dot7.get_center(), color=ORANGE, stroke_opacity=0.5))
 
         projections = VGroup(projection0, projection1, projection2, projection3, projection4, projection5, projection6, projection7)
         
@@ -107,7 +107,7 @@ class TusiCouple(Scene):
         self.play(intro_text.animate.scale(0.9))
         self.wait()
         self.play(Write(sec_text))
-        self.wait(2)
+        self.wait()
         self.play(AnimationGroup(FadeOut(intro_text), sec_text.animate.scale(0.8),sec_text.animate.to_edge(UP)) , run_time=2)
         rect= Rectangle(color=BLUE, width=14, height=14)
         for index_t in range(len(text_array)):
