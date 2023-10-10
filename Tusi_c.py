@@ -168,10 +168,103 @@ class TusiCouple(Scene):
         self.play(phase.animate.increment_value(rev), MoveAlongPath(imaginary_circle,imaginary_circle_path), run_time=3*period, rate_func=linear)
         self.wait(2)
         self.play(*[FadeOut(o) for o in self.mobjects if o!=main_circle])
-        # outro
+        
+        # Maths Equations part
+        equation_intro = Text("How the rotating point moves?")
+        main_text_equations = VGroup(
+            Text("To understand the mathematical equations behind the Tusi couple,", font_size=29),
+            Text("We define the parametric equations for the motion of the point on the larger circle", font_size=29),
+        )
+
+        # Center the main text
+        main_text_equations.arrange(DOWN)
+        
+        self.play(Write(equation_intro))
+        self.wait()
+        self.play(equation_intro.animate.to_edge(UP))
+        main_text_equations.next_to(equation_intro, DOWN, buff=1.8)
         dot = Dot(ORIGIN)
         self.play(ReplacementTransform(main_circle,dot))
-        created_by = Text("Developed by A. El Sayed")
+        self.play(FadeOut(dot))
+        self.play(Write(main_text_equations))
+        self.play(main_text_equations.animate.scale(1.02))
+        self.play(main_text_equations.animate.set_color(BLUE))
+        # Highlight the first line of text
+        self.play(ApplyMethod(main_text_equations[0].set_color, YELLOW), run_time=1)
+        self.wait(1)  # Wait for 1 second
+
+        # Highlight the second line of text
+        self.play(ApplyMethod(main_text_equations[1].set_color, YELLOW), run_time=1)
+        self.wait(1)  # Wait for 1 second
+
+        # Restore the original color
+        self.play(ApplyMethod(main_text_equations[0].set_color, WHITE), ApplyMethod(main_text_equations[1].set_color, WHITE), run_time=1)
+        self.wait(1)  # Wait for 1 second
+        equation_x = MathTex(
+            r'X(t) = (R) \times \cos(t + \phi)',
+            font_size=30
+        )
+
+        equation_y = MathTex(
+            r'Y(t) = (R) \times \sin(t + \phi)',
+            font_size=30
+        )
+
+        equations_text = VGroup(
+            Text("The coordinates of the point moving on the larger circle are:", font_size=33),
+        )  
+        
+        equations = VGroup(equation_x,equation_y)
+        
+        
+        equations.arrange(DOWN)
+        equations.next_to(equations_text,DOWN)
+        
+        # surrounding rectangle
+        
+        rectangle_equations = SurroundingRectangle(equations, buff= 0.3)
+        
+        equations_text.arrange(DOWN)
+        equations_text.next_to(equation_intro,DOWN , buff=1.5)
+        self.play(ReplacementTransform(main_text_equations,equations_text))
+        self.play(FadeIn(equations))
+        
+        
+        self.play(ApplyMethod(equations[0].set_color, GREEN), run_time=1)  # Wait for 1 second
+
+        # Highlight the second line of text
+        self.play(ApplyMethod(equations[1].set_color, GREEN), run_time=1) # Wait for 1 second
+
+        self.play(ApplyMethod(equations[0].scale, 1.4), run_time=1)
+        self.wait(1)  # Wait for 1 second
+
+        # Highlight the second line of text
+        self.play(ApplyMethod(equations[1].scale, 1.4), run_time=1)
+        self.wait(1)  # Wait for 1 second
+        
+        rectangle_equations.scale(1.4)
+        self.play(Create(rectangle_equations))
+        
+        last_text = VGroup(
+            Tex("These equations explain , in a parametric way, the fundmental equation behind the Tusi Couple" , font_size=34),
+            Tex("Where R is the radius of larger circle, t stands for the time , $\phi$ stands for the phase angle.", font_size = 34)
+        )
+        
+        last_text.arrange(DOWN, buff=0.5)
+        last_text.next_to(equations, DOWN, buff=0.8)
+        self.play(FadeOut(rectangle_equations))
+        self.play(equations.animate.scale(1/1.2))
+        self.play(equations.animate.next_to(equations,DOWN,buff=-1.7))
+        last_text.next_to(equations,DOWN, buff=0.5)
+        self.play(Write(last_text))
+        self.wait(2)
+        self.play(*[FadeOut(o) for o in self.mobjects])
+    
+       
+        # outro
+        dot = Dot(ORIGIN)
+        self.play(Create(dot))
+        created_by = Text("Thank you for watching!")
         linee = Line(LEFT, RIGHT)
         self.play(ReplacementTransform(dot,linee))
         self.wait()
